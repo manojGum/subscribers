@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from '../templates/Button';
 import Container from '../templates/Container';
 import ErrorModal from '../templates/ErrorModal';
 import './AddSubscriber.css'
 
 const AddSubscriber =(props)=>{
-
+const nameInputRef=useRef('Max')
+const pincodeInputRef=useRef('')
 const [name,setName]=useState('');
 const [pincode,SetPincode]=useState('')
 const [email,SetEmail]=useState('')
@@ -40,11 +41,13 @@ const onEmailChange=(events)=>{
         return 
     }
     console.log('updated states', name, pincode,email)
-    props.onAddSubscriber(name,pincode,email)
+    console.log('ref value', nameInputRef.current.value)
+    props.onAddSubscriber(nameInputRef.current.value,pincode,email)
     setName('')
     SetPincode('')
     SetEmail('')
         }
+
     const onCloseHandler=()=>{
         setError(null)
     }
@@ -55,9 +58,9 @@ const onEmailChange=(events)=>{
         <form onSubmit={onSubmitHandler}>
             <Container className="input">
             <label htmlFor='name'>Name</label>
-            <input id='name' value={name} type="text"  onChange={onNameChange}></input>
+            <input ref={nameInputRef} id='name' value={name} type="text"  onChange={onNameChange}></input>
             <label htmlFor='pincode'>pincode</label>
-            <input id='pincode' value={pincode} type="number" onChange={onPincodeChange} ></input>
+            <input  ref={pincodeInputRef} id='pincode' value={pincode} type="number" onChange={onPincodeChange} ></input>
             <label htmlFor='email'>Email</label>
             <input id='email' value={email} type="email" onChange={onEmailChange} ></input>
             <Button type='submit'>Save</Button>
