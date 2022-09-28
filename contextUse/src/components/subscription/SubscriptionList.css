@@ -1,0 +1,14 @@
+.list{
+    list-style: none;
+ padding: 0;   
+}
+
+.list_no_data{
+    color: white;
+    text-align: center;
+    /* display: flex; */
+    background-color: black;
+    height: 20vh;
+    /* justify-content: center; */
+    line-height: 20vh;
+}
