@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Button from '../templates/Button';
 import Container from '../templates/Container';
 import ErrorModal from '../templates/ErrorModal';
+import Input from '../templates/Input';
 import './AddSubscriber.css'
 
 const AddSubscriber =(props)=>{
@@ -57,8 +58,9 @@ const onEmailChange=(events)=>{
         {error && <ErrorModal title={error.title} content={error.content} onclose={onCloseHandler} ></ErrorModal> }
         <form onSubmit={onSubmitHandler}>
             <Container className="input">
-            <label htmlFor='name'>Name</label>
-            <input ref={nameInputRef} id='name' value={name} type="text"  onChange={onNameChange}></input>
+                <Input id="name" type="text" label="name"  onChange={onNameChange} />
+            {/* <label htmlFor='name'>Name</label>
+            <input ref={nameInputRef} id='name' value={name} type="text"  onChange={onNameChange}></input> */}
             <label htmlFor='pincode'>pincode</label>
             <input  ref={pincodeInputRef} id='pincode' value={pincode} type="number" onChange={onPincodeChange} ></input>
             <label htmlFor='email'>Email</label>

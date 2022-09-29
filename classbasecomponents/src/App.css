@@ -1,0 +1,11 @@
+.App {
+  margin: 3rem;
+  width: 30rem;
+  padding: 1rem;
+  background: white;
+  text-align: center;
+}
+.app h1{
+  margin: 0;
+  text-align: center;
+}
