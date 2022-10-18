@@ -12,11 +12,13 @@ const [name,setName]=useState('');
 const [pincode,SetPincode]=useState('')
 const [email,SetEmail]=useState('')
 const [error,setError]=useState('');
+
 const onNameChange=(events)=>{
-    console.log("name input:" ,events.target.value)
+    console.log(" name input:" ,events.target.value)
     setName(events.target.value)
 
 }
+
 const onPincodeChange=(events)=>{
     console.log(" pincode input:" ,events.target.value)
     SetPincode(events.target.value)
@@ -58,7 +60,7 @@ const onEmailChange=(events)=>{
         {error && <ErrorModal title={error.title} content={error.content} onclose={onCloseHandler} ></ErrorModal> }
         <form onSubmit={onSubmitHandler}>
             <Container className="input">
-                <Input id="name" type="text" label="name"  onChange={onNameChange} />
+                <Input id="name" type="text" label="name" value={name} onChang={onNameChange} />
             {/* <label htmlFor='name'>Name</label>
             <input ref={nameInputRef} id='name' value={name} type="text"  onChange={onNameChange}></input> */}
             <label htmlFor='pincode'>pincode</label>

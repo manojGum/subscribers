@@ -26,7 +26,7 @@ const authorizeHandler=()=>{
 }
 
   const cancleHandler=()=>{
-    setShow(false)
+    setShow(!show)
   }
   return (
     <div className="App">
@@ -43,7 +43,10 @@ const authorizeHandler=()=>{
       width:"9rem",
       height:"3rem",
     }} type="button" onClick={cancleHandler} >cancel</button>}
+
+
     </div>
+    
   );
 }
 
