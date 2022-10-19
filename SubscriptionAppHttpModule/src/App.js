@@ -7,6 +7,7 @@ import NewSubscription from './components/NewSubscription/NewSubscription';
 import Filter from './components/Filter';
 import { useCallback, useEffect, useState } from 'react';
 import SubscriptionList from './components/subscription/SubscriptionList';
+import useTime from './hooks/time';
 // some time
 // import SubscriptionChart from './components/subscription/SubscriptionChart';
 
@@ -49,8 +50,9 @@ function App() {
   
   const [filteredYear, setFilteredYear]=useState("2022");
   const [isLoading , SetIsLoading]=useState(false);
-  const [error, SetError]=useState('')
-
+  const [error, SetError]=useState('');
+  // const [currentTime, setCurrentTime]=useState('');
+ 
 
 useEffect(()=>{
   if(localStorage.getItem('filteredYear')){
@@ -58,15 +60,18 @@ useEffect(()=>{
     setFilteredYear(localStorage.getItem('filteredYear'))
     console.log(localStorage.getItem('filteredYear'))
   }
+//   const interval=setInterval(()=>{setCurrentTime(new Date().toLocaleString())},1000)
+// return ()=>clearInterval(interval)
+
 },[])
 
-
+const currentTime=useTime()
 
   const addsubscriptionHandler= async (data)=>{
     // // subscription.push(data)
     // setSubscription([data,...subscription])
     try{
-      SetIsLoading(true)
+      SetIsLoading(true) 
 
       setSubscription(prevState=>{return [data,...subscriptions]});
       console.log("on add subscription ", data)
@@ -155,7 +160,9 @@ useEffect(()=>{
    
       <Container>
         <button type='button' onClick={fetchListHandler}>Fetch List</button>
+        <span className='current-time'>{currentTime}</span>
          <NewSubscription  onAddsubscription={addsubscriptionHandler} />
+         <span className='current-time'>{currentTime}</span>
          <Filter onFilterChange={filterChangeHandler} selectedFilter={filteredYear}  />
          {/* some times */}
  {/* <SubscriptionChart filterSubscriptions={filterSubscriptions}/> */}
