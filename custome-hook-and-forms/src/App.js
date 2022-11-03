@@ -39,7 +39,7 @@ const addSubscriptionHandler=async (data)=>{
    setSubscriptions(prevState=>{return [data,...subscriptions]});
   }
   catch(error){
-    setError(error.message);
+    // setError(error.message);
   }
 
 }
@@ -52,11 +52,29 @@ const filteredSubscriptions=subscriptions.filter((item)=>{
   return new Date(item.date).getFullYear().toString() === filteredYear
 })
 
-// const {isLoading,error,sendRequest:sendFetchApi}=useSendRequest();
+// // const {isLoading,error,sendRequest:sendFetchApi}=useSendRequest();
+// // const handleFetcheData=useCallback((data)=>{
+// //   let fetchedSubscriptions=[] 
+// //       for(let key in data){
+// //         // console.log('value for',key,data[key])
+// //        fetchedSubscriptions.push(data[key])
+// // }
+// // setSubscriptions(fetchedSubscriptions);
+// // },[])
+
+// // const {isLoading,error, sendRequest:sendFetchApi}= useSendRequest(handleFetcheData);
+
+
+// const fetchListHandler= useCallback(()=>{
+
+//   // sendFetchApi({url:'https://react-workspace-default-rtdb.firebaseio.com/subscriptions.json'})
+
+// },[sendFetchApi,handleFetcheData])
+
 
 const fetchListHandler= useCallback(()=>{
   setIsLoading(true);
-  fetch('https://react-workspace-default-rtdb.firebaseio.com/subscriptions.json').then(
+  fetch('https://react-workspace-default-rtdb.firebaseio.com/subscriptions.json').then(  
       (response)=>{
         console.log('fetched data', response,response.json)
         return response.json()
